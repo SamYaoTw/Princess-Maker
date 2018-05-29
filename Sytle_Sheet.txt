@@ -1,0 +1,8 @@
+Style Sheet
+
+Variable Use UPPERCASE
+
+while(1)
+{
+
+}
