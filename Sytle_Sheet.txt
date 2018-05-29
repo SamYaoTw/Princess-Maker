@@ -1,8 +1,19 @@
-Style Sheet
+Style Sheet "Coding風格小本本"
 
-Variable Use UPPERCASE
+Variable head Use UPPERCASE 變數開頭請用大寫 e.g. int Edge, Claymore;
 
+使用大括號擺下面的寫法
+e.g.
 while(1)
 {
 
 }
+
+函數參數請寫成 逗號後空一格接下一個參數(可遵守可不遵守:D) e.g. Function(a, b, c);
+
+記得寫完一段就要測試, 如果沒時間測可以直接Facebook丟給Edge幫你測
+如果有錯誤Edge可以幫忙改
+
+如果覺得別人(包括自己)看不懂自己在寫甚麼, 請加註解
+
+祝各位寫中學, 學中寫:D
