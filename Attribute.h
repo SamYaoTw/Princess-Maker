@@ -14,6 +14,7 @@
     {
         char Name[30] = {};      ///  玩家名字
         Attribute PA[12];        ///  玩家能力陣列
+        int size = 0;
     };
 
     bool ReadAttribute(FILE * fp, Attribute * a);       ///從 attribute.txt 取得能力值名稱

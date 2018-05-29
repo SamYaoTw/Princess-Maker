@@ -39,6 +39,7 @@
     {
         char Name[30] = {};         /// 職業名稱
         AttributeCompare At[12];    /// 職業需求
+        int size = 0;
     };
     /// 職業名稱與職業限制
 

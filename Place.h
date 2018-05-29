@@ -18,6 +18,7 @@
     {
         char Name[30] = {}; /// 地方名字
         Attribute At[12];  /// 加的能力陣列
+        int size = 0;
     };
     /// 去某地的名字 與獎勵
     struct PlaceDB
