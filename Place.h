@@ -1,5 +1,5 @@
 #ifndef PLACE_H
-    #define PLACE_H
+#define PLACE_H
 
     #include <stdio.h>
     #include <stdlib.h>
@@ -8,8 +8,8 @@
 
     struct Place
     {
-        char Name[30] = {}; /// 地方名字
-        Attribute At[12];  /// 加的屬性陣列
+        char Name[30] = {}; /// 地方名字 Ex.BeautySalon
+        Attribute At[12];  /// 加的屬性陣列 Ex. Money +1000, Intelligence -5, Charm +8
         int size = 0;
     };
     /// 去某地的名字 與所加屬性
@@ -30,7 +30,7 @@
         回傳2代表能力不足無法前往
         回傳3代表錢不夠
     */
-    bool AddPlayerAttributeByPlace(Place *, Player *);        ///根據該地方的資訊對玩家的屬性值做操作
-    void DisplayPlace(const Place *,  const Player *);                       ///顯示地方資訊 利用CheckPlaceQualified檢查該地方是否可以去
+    void AddPlayerAttributeByPlace(Place *, Player *);        ///根據該地方的資訊對玩家的屬性值做操作
+    void DisplayPlace(const Place * p,  const Player *pl);                       ///顯示地方資訊 利用CheckPlaceQualified檢查該地方是否可以去
 
 #endif
