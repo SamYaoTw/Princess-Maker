@@ -62,11 +62,19 @@ int SearchCareerMatch(CareerDB * PDB, Player * p)
                     {
                         if(PDB->C[i].At[j].CS == '>')
                         {
-                            if(p->PA[k].Point <= PDB->C[i].At[j].Condition)     check = false;
+                            if(p->PA[k].Point <= PDB->C[i].At[j].Condition)
+                            {
+                                check = false;
+                                break;
+                            }
                         }
                         else if(PDB->C[i].At[j].CS == '<')
                         {
-                            if(p->PA[k].Point >= PDB->C[i].At[j].Condition)     check = false;
+                            if(p->PA[k].Point >= PDB->C[i].At[j].Condition)
+                            {
+                                check = false;
+                                break;
+                            }
                         }
                     }
                     else
@@ -77,11 +85,19 @@ int SearchCareerMatch(CareerDB * PDB, Player * p)
                             {
                                 if(PDB->C[i].At[j].CS == '>')
                                 {
-                                    if(p->PA[k].Point <= p->PA[l].Point)    check = false;
+                                    if(p->PA[k].Point <= p->PA[l].Point)
+                                    {
+                                        check = false;
+                                        break;
+                                    }
                                 }
                                 else if(PDB->C[i].At[j].CS == '<')
                                 {
-                                    if(p->PA[k].Point >= p->PA[l].Point)    check = false;
+                                    if(p->PA[k].Point >= p->PA[l].Point)
+                                    {
+                                        check = false;
+                                        break;
+                                    }
                                 }
                             }
                         }
