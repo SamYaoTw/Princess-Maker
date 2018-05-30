@@ -6,7 +6,7 @@ bool ReadCareer(FILE * fp, Career * c)
     {
         fgets(c->Name,50,fp);
         if(c->Name[0] == '\0')  return false;
-        for(int i=0 ; i<2 ; i++)    c->Name[strlen(c->Name)-1] = '\0';
+        for(int i=0 ; (c->Name[strlen(c->Name)-1] <= 'a' || c->Name[strlen(c->Name)-1] >= 'z') && (c->Name[strlen(c->Name)-1] <= 'A' || c->Name[strlen(c->Name)-1] >= 'Z') ; i++)    c->Name[strlen(c->Name)-1] = '\0';
         char str[50]= {};
         while(fgets(str,50,fp))
         {
@@ -90,5 +90,6 @@ int SearchCareerMatch(CareerDB * PDB, Player * p)
             }
         }
         if(check)   return i;
+        return -1;
     }
 }
