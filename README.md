@@ -10,6 +10,7 @@
 ******* Place.h - End *****************
 
 ******* Career.h **********************
+
     Magician:
        Magic > 49
        Magic > Charm
