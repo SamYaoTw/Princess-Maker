@@ -24,7 +24,12 @@
     bool AddPlace(PlaceDB * PDB, const Place * p);            ///將地方加入地方資料庫
     ///記得回傳成不成功
 
-    bool CheckPlaceQualified(const Place * p, const Player * p);    ///檢查該地方是否可以去
+    int CheckPlaceQualified(const Place *, const Player *);    ///檢查該地方是否可以去
+    /*
+        回傳1代表可以前往
+        回傳2代表能力不足無法前往
+        回傳3代表錢不夠
+    */
     void DisplayPlace(const Place * p);                       ///顯示地方資訊 利用CheckPlaceQualified檢查該地方是否可以去
 
 #endif
