@@ -1,3 +1,12 @@
+******* Attribute.h **********************
+	玩家的第0個屬性一定是錢
+	Player->PA[0]->Name = "Moeny"
+	Player->PA[0]->Point = 1000
+	
+	DisplayAttribute(const Attribute * a);
+	因為第0個屬性一定是Money 所以在讀到Money時要把顯示的名稱轉為"$"代表錢
+******* Attribute.h - End *****************
+
 ******* Place.h **********************
     NTNU -1000
 

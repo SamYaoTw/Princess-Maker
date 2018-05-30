@@ -15,26 +15,6 @@
         char CAName[30] = {}; /// CompareAttribute name 比較能力值的名字
     };
     /// 根據比較能力值 決定成為哪種職業
-    /*
-    Magician:
-       Magic > 49
-       Magic > Charm
-
-    Career->Name -> "Magician"
-        Magician:
-
-    Career->At->Type -> "0"
-    Career->At->Name -> "Magic"
-    Career->At->CS -> ">"
-    Career->At->Condition = "49"
-        Magic > 49
-
-    Career->At->Type -> "1"
-    Career->At->Name -> "Magic"
-    Career->At->CS -> ">"
-    Career->At->CAName = "Charm"
-        Magic > Charm
-    */
     struct Career
     {
         char Name[30] = {};         /// 職業名稱

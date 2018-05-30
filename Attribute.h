@@ -22,5 +22,6 @@
     ///記得回傳成不成功
 
     void DisplayAttribute(const Attribute * a);               ///顯示能力資訊
+    void DisplayAttributeDB(const Player * p);                ///顯示出玩家所有屬性
 
 #endif
