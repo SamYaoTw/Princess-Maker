@@ -19,7 +19,9 @@ bool InitializePlayer(FILE * fp, Player * p)
     {
         return false;
     }
-    int i = 0;
+    strcpy(p->PA[0].Name, "Money");
+    p->PA[0].Point = 1000;
+    int i = 1;
     while(ReadAttribute(fp, &temp))
     {
         p->PA[i] = temp;
