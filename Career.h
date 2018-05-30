@@ -10,11 +10,11 @@
     {
         char Name[30] = {}; /// 比較能力名字
         char CS; /// Compare symbol 大於或小於
-        bool Type; ///Type = 0 Compare Condition 比較數值, Type = 1 CAName 比較能力值
+        bool Type; ///Type = 0 Compare Condition 比較數值, Type = 1 CAName 比較屬性值
         int Condition = 0; /// 比較數值
-        char CAName[30] = {}; /// CompareAttribute name 比較能力值的名字
+        char CAName[30] = {}; /// CompareAttribute name 比較屬性值的名字
     };
-    /// 根據比較能力值 決定成為哪種職業
+    /// 根據比較屬性值 決定成為哪種職業
     struct Career
     {
         char Name[30] = {};         /// 職業名稱
@@ -29,7 +29,7 @@
         int size = 0;
     };
     /// 職業資料庫
-    /// 採取行動後扣的錢 與 獲得的能力值
+    /// 採取行動後扣的錢 與 獲得的屬性值
 
     bool ReadCareer(FILE * fp, Career * c);             ///從 titlerules.txt 取得職業資訊
     bool AddCareer(CareerDB * PDB, const Career * p);         ///將職業加入職業資料庫
