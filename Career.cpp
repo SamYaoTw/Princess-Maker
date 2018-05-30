@@ -90,6 +90,6 @@ int SearchCareerMatch(CareerDB * PDB, Player * p)
             }
         }
         if(check)   return i;
-        return -1;
     }
+    return -1;
 }
