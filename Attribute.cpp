@@ -27,7 +27,25 @@ bool InitializePlayer(FILE * fp, Player * p)
     }
     return true;
 }
-void DisplayAttribute(Attribute * a)
+void DisplayAttribute(const Attribute * a)
 {
     printf("%17s %5d\n",a->Name,a->Point);
+}
+void DisplayAttributeDB(const Player * p)
+{
+    for(int i=0;i<p->size;i++)
+    {
+        DisplayAttribute(&p->PA[i]);
+    }
+}
+int SearchAttribute(const Player *a, const char * AttributeName)
+{
+    for(int i=0;i<a->size;i++)
+    {
+        if(strcmp(a->PA[i].Name,AttributeName)==0)
+        {
+            return i;
+        }
+    }
+    return -1;
 }
