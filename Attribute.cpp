@@ -1,26 +1,26 @@
-#include"Attribute.h"
+#include "Attribute.h"
 bool ReadAttribute(FILE * fp, Attribute * a)
 {
-    if(fp==0)
+    if(fp == 0)
     {
         return false;
     }
     else
     {
-        fscanf(fp,"%s",a->Name);
-        a->Point=0;
+        fscanf(fp, "%s", a->Name);
+        a->Point = 0;
         return true;
     }
 }
 bool InitializePlayer(FILE * fp, Player * p)
 {
     Attribute temp;
-    if(!(ReadAttribute(fp,&temp)))
+    if(!(ReadAttribute(fp, &temp)))
     {
         return false;
     }
-    int i=0;
-    while(ReadAttribute(fp,&temp))
+    int i = 0;
+    while(ReadAttribute(fp, &temp))
     {
         p->PA[i] = temp;
         i++;
@@ -29,20 +29,20 @@ bool InitializePlayer(FILE * fp, Player * p)
 }
 void DisplayAttribute(const Attribute * a)
 {
-    printf("%17s %5d\n",a->Name,a->Point);
+    printf("%17s %5d\n", a->Name, a->Point);
 }
 void DisplayAttributeDB(const Player * p)
 {
-    for(int i=0;i<p->size;i++)
+    for(int i = 0;i < p->size;i++)
     {
         DisplayAttribute(&p->PA[i]);
     }
 }
 int SearchAttribute(const Player *a, const char * AttributeName)
 {
-    for(int i=0;i<a->size;i++)
+    for(int i = 0;i < a->size;i++)
     {
-        if(strcmp(a->PA[i].Name,AttributeName)==0)
+        if(strcmp(a->PA[i].Name, AttributeName) == 0)
         {
             return i;
         }
