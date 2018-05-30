@@ -8,29 +8,29 @@
 
     struct Place
     {
-        char Name[30] = {}; /// 地方名字 Ex.BeautySalon
-        Attribute At[12];  /// 加的屬性陣列 Ex. Money +1000, Intelligence -5, Charm +8
+        char Name[30] = {}; // 地方名字 Ex.BeautySalon
+        Attribute At[12];  // 加的屬性陣列 Ex. Money +1000, Intelligence -5, Charm +8
         int size = 0;
     };
-    /// 去某地的名字 與所加屬性
+    // 去某地的名字 與所加屬性
     struct PlaceDB
     {
         Place P[12];
         int size = 0;
     };
-    /// 地方資料庫
+    // 地方資料庫
 
-    bool ReadPlaces(FILE * fp, Place * p);              ///從 places.txt 取得地方資訊
-    bool AddPlace(PlaceDB * PDB, const Place * p);            ///將地方加入地方資料庫
-    ///記得回傳成不成功
+    bool ReadPlaces(FILE * fp, Place * p);              //從 places.txt 取得地方資訊
+    bool AddPlace(PlaceDB * PDB, const Place * p);            //將地方加入地方資料庫
+    //記得回傳成不成功
 
-    int CheckPlaceQualified(const Place *, const Player *);    ///檢查該地方是否可以去
+    int CheckPlaceQualified(const Place *, const Player *);    //檢查該地方是否可以去
     /*
         回傳1代表可以前往
         回傳2代表能力不足無法前往
         回傳3代表錢不夠
     */
-    void AddPlayerAttributeByPlace(Place *, Player *);        ///根據該地方的資訊對玩家的屬性值做操作
-    void DisplayPlace(const Place * p,  const Player *pl);                       ///顯示地方資訊 利用CheckPlaceQualified檢查該地方是否可以去
+    void AddPlayerAttributeByPlace(Place *, Player *);        //根據該地方的資訊對玩家的屬性值做操作
+    void DisplayPlace(const Place * p,  const Player *pl);                       //顯示地方資訊 利用CheckPlaceQualified檢查該地方是否可以去
 
 #endif

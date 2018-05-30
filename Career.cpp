@@ -35,7 +35,7 @@ bool ReadCareer(FILE * fp, Career * c)
     }
 }
 
-bool AddCareer(CareerDB *PDB,Career *c)
+bool AddCareer(CareerDB *PDB,const Career *c)
 {
 	if(PDB->size >= 12)     return false;
 	else
@@ -46,66 +46,61 @@ bool AddCareer(CareerDB *PDB,Career *c)
     }
 }
 
-int SearchCareerMatch(CareerDB * PDB, Player * p)
+int SearchCareerMatch(const CareerDB * PDB, const Player * p)
 {
-    bool check = true;
-    for(int i=0 ; i<PDB->size ; i++)
+    for(int i = 0;i < PDB->size;i++)
     {
-        check = true;
-        for(int j=0 ; j<PDB->C[i].size ; j++)
+        bool check = 1;
+        for(int j = 0;j < PDB->C[i].size;j++)
         {
-            for(int k=0 ; k<p->size ; k++)
+            int index = SearchAttribute(p, PDB->C[i].At[j].Name);
+            if(index == -1)
             {
-                if(strcmp(PDB->C[i].At[j].Name,p->PA[k].Name) == 0)
+                check = 0;
+                break;
+            }
+            if(PDB->C[i].At[j].Type == 0)
+            {
+                if(PDB->C[i].At[j].CS == '<')
                 {
-                    if(!PDB->C[i].At[j].Type)
+                    if(p->PA[index].Point >= PDB->C[i].At[j].Condition)
                     {
-                        if(PDB->C[i].At[j].CS == '>')
-                        {
-                            if(p->PA[k].Point <= PDB->C[i].At[j].Condition)
-                            {
-                                check = false;
-                                break;
-                            }
-                        }
-                        else if(PDB->C[i].At[j].CS == '<')
-                        {
-                            if(p->PA[k].Point >= PDB->C[i].At[j].Condition)
-                            {
-                                check = false;
-                                break;
-                            }
-                        }
+                        check = 0;
+                        break;
                     }
-                    else
+                }
+                else
+                {
+                    if(p->PA[index].Point <= PDB->C[i].At[j].Condition)
                     {
-                        for(int l=0 ; l<p->size ; l++)
-                        {
-                            if(strcmp(PDB->C[i].At[j].CAName,p->PA[l].Name) == 0)
-                            {
-                                if(PDB->C[i].At[j].CS == '>')
-                                {
-                                    if(p->PA[k].Point <= p->PA[l].Point)
-                                    {
-                                        check = false;
-                                        break;
-                                    }
-                                }
-                                else if(PDB->C[i].At[j].CS == '<')
-                                {
-                                    if(p->PA[k].Point >= p->PA[l].Point)
-                                    {
-                                        check = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
+                        check = 0;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                int index_b = SearchAttribute(p, PDB->C[i].At[j].CAName);
+                if(PDB->C[i].At[j].CS == '<')
+                {
+                    if(p->PA[index].Point >= p->PA[index_b].Point)
+                    {
+                        check = 0;
+                        break;
+                    }
+                }
+                else
+                {
+                    if(p->PA[index].Point <= p->PA[index_b].Point)
+                    {
+                        check = 0;
+                        break;
                     }
                 }
             }
         }
-        if(check)   return i;
+        if(check)
+            return i;
     }
     return -1;
 }

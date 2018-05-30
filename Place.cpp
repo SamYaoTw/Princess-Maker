@@ -1,5 +1,6 @@
 #include "Place.h"
-bool ReadPlaces(FILE * fp, Place * p) ///±q places.txt ¨ú±o¦a¤è¸ê°T
+#include <ctype.h>
+bool ReadPlaces(FILE * fp, Place * p) //±q places.txt ¨ú±o¦a¤è¸ê°T
 {
     p->size = 0; //initialize
     char line[100]={}; //¨C¦¸Åª¤@¦æ
@@ -25,7 +26,7 @@ bool ReadPlaces(FILE * fp, Place * p) ///±q places.txt ¨ú±o¦a¤è¸ê°T
     return true;
 }
 
-bool AddPlace(PlaceDB * PDB, const Place * p) ///±N¦a¤è¥[¤J¦a¤è¸ê®Æ®w & °O±o¦^¶Ç¦¨¤£¦¨¥\
+bool AddPlace(PlaceDB * PDB, const Place * p)
 {
     if(PDB->size < 0 || PDB->size>=12) return false;
     PDB->P[PDB->size] = *p;
@@ -33,19 +34,19 @@ bool AddPlace(PlaceDB * PDB, const Place * p) ///±N¦a¤è¥[¤J¦a¤è¸ê®Æ®w & °O±o¦^¶Ç
     return true;
 }
 
-int CheckPlaceQualified(const Place *p, const Player *pl) ///ÀË¬d¸Ó¦a¤è¬O§_¥i¥H¥h
+int CheckPlaceQualified(const Place *p, const Player *pl) //ÀË¬d¸Ó¦a¤è¬O§_¥i¥H¥h
 {
     //money
     int index = SearchAttribute(pl,p->At[0].Name);
     if(index == -1) return -1;
-    if(pl->PA[index].Point - p->At[0].Point < 0) return 3;
+    if(pl->PA[index].Point + p->At[0].Point < 0) return 3;
 
     //attribute
     for(int i=1;i<p->size;i++)
     {
         int index = SearchAttribute(pl,p->At[i].Name);
         if(index ==-1) return -1;
-        if(pl->PA[index].Point - p->At[i].Point < 0) return 2;
+        if(pl->PA[index].Point + p->At[i].Point < 0) return 2;
     }
     return 1;
 }
@@ -57,7 +58,7 @@ int CheckPlaceQualified(const Place *p, const Player *pl) ///ÀË¬d¸Ó¦a¤è¬O§_¥i¥H¥
 */
 
 
-void AddPlayerAttributeByPlace(Place *p, Player *pl) ///®Ú¾Ú¸Ó¦a¤èªº¸ê°T¹ïª±®aªºÄÝ©Ê­È°µ¾Þ§@
+void AddPlayerAttributeByPlace(Place *p, Player *pl) //®Ú¾Ú¸Ó¦a¤èªº¸ê°T¹ïª±®aªºÄÝ©Ê­È°µ¾Þ§@
 {
     for(int i=0;i<p->size;i++)
     {
@@ -72,17 +73,28 @@ void AddPlayerAttributeByPlace(Place *p, Player *pl) ///®Ú¾Ú¸Ó¦a¤èªº¸ê°T¹ïª±®aªº
     }
 }
 
-void DisplayPlace(const Place * p, const Player *pl) ///Åã¥Ü¦a¤è¸ê°T §Q¥ÎCheckPlaceQualifiedÀË¬d¸Ó¦a¤è¬O§_¥i¥H¥h
+void DisplayPlace(const Place * p, const Player *pl) //Åã¥Ü¦a¤è¸ê°T §Q¥ÎCheckPlaceQualifiedÀË¬d¸Ó¦a¤è¬O§_¥i¥H¥h
 {
     // NTNU  $ -1000  INT  +10 CHA  +10 ELE  +10 MAG  +10
     printf("%18s  ",p->Name);
-    if(CheckPlaceQualified(p,pl)!=1) printf("- Unqualified\n");
+    int qualified = CheckPlaceQualified(p,pl);
+    if(qualified==2) printf("- Unqualified\n");
+    else if (qualified == 3) printf("- Unaffordable\n");
     else
     {
-        for(int i=0;i<p->size;i++) printf("%s %d ",p->At[i].Name,p->At[i].Point);
+        for(int i=0;i<p->size;i++)
+        {
+            char name[5] = {};
+            char line[10];
+            for (int k = 0; p->At[i].Name[k] && k < 3; k++)
+                name[k] = toupper(p->At[i].Name[k]);
+            name[3] = '\0';
+            sprintf(line, "%c%d", p->At[i].Point < 0 ? '-' : '+', p->At[i].Point < 0 ? -p->At[i].Point : p->At[i].Point);
+            printf("%3s%5s  ", name, line);
+        }
         printf("\n");
     }
 }
 
 
-/// AddPlayerAttributeByPlace¡BDisplayPlace¦³§ó°Ê
+// AddPlayerAttributeByPlace¡BDisplayPlace¦³§ó°Ê

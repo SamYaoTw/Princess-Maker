@@ -7,7 +7,12 @@ bool ReadAttribute(FILE * fp, Attribute * a)
     }
     else
     {
-        fscanf(fp, "%s", a->Name);
+        int checkEOF;
+        checkEOF = fscanf(fp, "%s", a->Name);
+        if (checkEOF != 1)
+        {
+            return false;
+        }
         a->Point = 0;
         return true;
     }
@@ -15,27 +20,26 @@ bool ReadAttribute(FILE * fp, Attribute * a)
 bool InitializePlayer(FILE * fp, Player * p)
 {
     Attribute temp;
-    if(!(ReadAttribute(fp, &temp)))
-    {
-        return false;
-    }
-    strcpy(p->PA[0].Name, "Money");
+    strcpy(p->PA[0].Name, "$");
     p->PA[0].Point = 1000;
     int i = 1;
-    while(ReadAttribute(fp, &temp))
+    while(ReadAttribute(fp, &p->PA[i]))
     {
-        p->PA[i] = temp;
         i++;
     }
+    p->size = i;
     return true;
 }
 void DisplayAttribute(const Attribute * a)
 {
-    printf("%17s %5d\n", a->Name, a->Point);
+    printf("%17s %5d     ", a->Name, a->Point);
+    for (int star = a->Point/10; star--; )
+        printf("*");
+    printf("\n");
 }
 void DisplayAttributeDB(const Player * p)
 {
-    for(int i = 0;i < p->size;i++)
+    for(int i = 1;i < p->size;i++)
     {
         DisplayAttribute(&p->PA[i]);
     }
