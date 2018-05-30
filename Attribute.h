@@ -21,6 +21,6 @@
     bool InitializePlayer(FILE * fp, Player * p);       ///根據 attribute.txt 利用 ReadAttribute 讀入能力資訊 初始化玩家的各項能力資訊
     ///記得回傳成不成功
 
-    void DisplayAttribute(Attribute * a);               ///顯示能力資訊
+    void DisplayAttribute(const Attribute * a);               ///顯示能力資訊
 
 #endif
