@@ -31,6 +31,6 @@
         回傳3代表錢不夠
     */
     bool AddPlayerAttributeByPlace(Place *, Player *);        ///根據該地方的資訊對玩家的屬性值做操作
-    void DisplayPlace(const Place * p);                       ///顯示地方資訊 利用CheckPlaceQualified檢查該地方是否可以去
+    void DisplayPlace(const Place *,  const Player *);                       ///顯示地方資訊 利用CheckPlaceQualified檢查該地方是否可以去
 
 #endif
